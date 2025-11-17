@@ -189,5 +189,4 @@ for i=1:size(perfil_pert, 1)
     graficos(nombre_perfiles(i), t_lazo_cerrado, T_p_lazo_cerrado,...
              plot_temp_amb, plot_irr_sol, salida_vent, salida_bomb);
     
-    
 end
