@@ -177,8 +177,6 @@ for i=1:size(perfil_pert, 1)
     [t_lazo_cerrado, y_lazo_cerrado] = ode45(odefun_lazo_cerrado, tspan, y0);
     T_p_lazo_cerrado = y_lazo_cerrado(:, 1) - 273.15;
 
-
-
     plot_temp_amb = arrayfun(@(t) temperatura_ambiente(t), t_lazo_cerrado);
     plot_irr_sol = arrayfun(@(t) irradiancia_solar(t), t_lazo_cerrado);
 
