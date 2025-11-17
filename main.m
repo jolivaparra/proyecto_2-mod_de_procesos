@@ -177,17 +177,29 @@ for i=1:size(perfil_pert, 1)
     [t_lazo_cerrado, y_lazo_cerrado] = ode45(odefun_lazo_cerrado, tspan, y0);
     T_p_lazo_cerrado = y_lazo_cerrado(:, 1) - 273.15;
 
-    salida_sin_limite = p.K_p * (p.ref - y_lazo_cerrado(:,1)) + p.offset;
-    salida_vent = min(p.V_vent_MAX, max(salida_sin_limite, p.V_MIN));
-    salida_bomba = min(p.V_bomb_suficiente, max(salida_sin_limite, p.V_MIN));
+
 
     plot_temp_amb = arrayfun(@(t) temperatura_ambiente(t), t_lazo_cerrado);
     plot_irr_sol = arrayfun(@(t) irradiancia_solar(t), t_lazo_cerrado);
+
+    salida_sin_limite = p.K_p * (p.ref - y_lazo_cerrado(:,1)) + p.offset;
+    salida_vent = min(p.V_vent_MAX, max(salida_sin_limite, p.V_MIN));
+    salida_bomb = min(p.V_bomb_suficiente, max(salida_sin_limite, p.V_MIN));
+
+    graficos(nombre_perfiles(i), t_lazo_cerrado, T_p_lazo_cerrado,...
+             plot_temp_amb, plot_irr_sol, salida_vent, salida_bomb);
     
+    
+end
+
+
+function graficos(nombre, t, T_p, temp_amb, irr_sol, sal_vent, ...
+                    sal_bomb)
+
     % ---------- Temperatura Panel Solar ----------
-    figure("Name", [nombre_perfiles(i)], "NumberTitle", "off");
+    figure("Name", nombre, "NumberTitle", "off");
     subplot(2, 2, 1);
-    plot(t_lazo_cerrado/3600, T_p_lazo_cerrado);
+    plot(t/3600, T_p);
     title("Temperatura del Panel Solar");
     xlim([0,24]); xticks(0:2:24);
     ylim([0, 60]);
@@ -196,9 +208,9 @@ for i=1:size(perfil_pert, 1)
     
     % ---------- Voltajes Ventilador/Bomba ----------
     subplot(2, 2, 2);
-    plot(t_lazo_cerrado/3600, salida_vent, "LineStyle", "--", "LineWidth", 2, "Color", "b");
+    plot(t/3600, sal_vent, "LineStyle", "--", "LineWidth", 2, "Color", "b");
     hold on; grid on;
-    plot(t_lazo_cerrado/3600, salida_bomba, "LineStyle", "-.", "LineWidth", 2, "Color", "r");
+    plot(t/3600, sal_bomb, "LineStyle", "-.", "LineWidth", 2, "Color", "r");
     legend("V. Ventilador", "V. Bomba", "Location", "northwest");
     title("Voltaje aplicado a la bomba y ventilador");
     xlim([0,24]); xticks(0:2:24);
@@ -208,25 +220,20 @@ for i=1:size(perfil_pert, 1)
     % ---------- Temperatura Ambiente ----------
 
     subplot(2, 2, 3);
-    plot(t_lazo_cerrado/3600, plot_temp_amb, "LineWidth", 1, "Color", "g");
+    plot(t/3600, temp_amb, "LineWidth", 1, "Color", "g");
     title("Temperatura Ambiente");
     xlim([0,24]); xticks(0:2:24);
     ylim([0, 40]);
     xlabel("Tiempo (h)"); ylabel("Temperatura (°C)");
     grid on;
 
-
     % ---------- Irradiancia Solar ----------
     subplot(2, 2, 4);
-    plot(t_lazo_cerrado/3600, plot_irr_sol, "LineWidth", 1, "Color", "y");
+    plot(t/3600, irr_sol, "LineWidth", 1, "Color", "y");
     title("Irradiancia Solar");
     xlim([0,24]); xticks(0:2:24);
     ylim([-100, 1100]);
     xlabel("Tiempo (h)"); ylabel("Irradiancia (W/m^2)");
     grid on;
+
 end
-
-
-% function graficos()
-% 
-% end

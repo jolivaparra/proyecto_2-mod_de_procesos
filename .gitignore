@@ -1,0 +1,59 @@
+#################################
+## MATLAB IDE & Caché
+#################################
+
+# Archivos de preferencias locales
+# Contiene configuraciones específicas de tu instalacion
+*.prf
+
+# Archivos de cache de busqueda y funciones
+# Generados automáticamente para acelerar el entorno
+*.mnc
+*.matlab
+
+# Archivos temporales de editor de MATLAB
+*~
+
+# Archivos de proyectos (.prj) generados por Project Tool que contienen rutas locales
+# Solo incluir si quieres compartir la configuracion del proyecto:
+# *.prj
+
+#################################
+## Simulink (Modelos)
+#################################
+
+# Archivos de cache de Simulink para acelerar la compilacion
+*.sltx
+*.slxc
+
+# Archivos de registro de simulacion generados por defecto
+*.log
+*.p
+
+# Archivos de respaldo de simulaciones
+*.bak
+
+#################################
+## Archivos de Datos, Resultados y Salidas
+#################################
+
+# Archivos MAT con resultados de simulacion
+# Incluye estos solo si no quieres rastrear los resultados finales
+*.mat
+
+# Archivos de figuras generadas (opcional)
+*.fig
+
+# Generados por el profiler y coverage reports
+code_coverage.html
+profile_output.html
+
+#################################
+## Entorno del Sistema Operativo
+#################################
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
