@@ -36,10 +36,10 @@ p.sigma = 5.67e-8;
 
 
 % Parámetros del controlador proporcional
-p.K_p = [-0.3, -0.7, -1, -3];
+p.K_p = [-0.4, -0.75, -1, -3];
 
-p.ref = 30 + 273.15;
-p.offset = 2;
+p.ref = 45 + 273.15;
+p.offset = 3;
 
 p.V_MIN = 0;
 p.V_vent_MAX = 12;

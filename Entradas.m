@@ -1,5 +1,4 @@
-% ========== ENTRADAS DE PERTURBACIONES ==========
-
+%% ========== ENTRADAS DE PERTURBACIONES ==========
 classdef Entradas
     methods
         
