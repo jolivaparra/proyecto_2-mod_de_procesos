@@ -6,7 +6,7 @@ function graficos(nombre, p, temperatura_ambiente, irradiancia_solar, ...
 
 
     pert = Entradas();
-    tspan = 0:24*3600;
+    tspan = 0:60:24*3600;
     T0 = pert.temperatura_ambiente_despejado(0) + 273.15;
     y0 = [T0, T0];
 

@@ -36,7 +36,7 @@ p.sigma = 5.67e-8;
 
 
 % Parámetros del controlador proporcional
-p.K_p = [-0.5, -0.75, -1, -3];
+p.K_p = [-0.4, -1, -2];
 
 p.ref = 45 + 273.15;
 p.offset = 5;
